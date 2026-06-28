@@ -1,0 +1,125 @@
+{
+    "cameraSettings": {
+        "cameraV380_1": {
+            "applicationIP": "192.168.1.2",
+            "videoPort": 5111,
+            "audioPort": 5112,
+            "camIP": "192.168.1.10",
+            "camPort": 8800,
+            "camId": "00000000",
+            "camProtocol": "v380",
+            "camUserName": "admin",
+            "camUserPassword": "admin",
+            "camHD": true,
+            "camEnabled": true
+        },
+        "cameraV380_2": {
+            "applicationIP": "192.168.1.2",
+            "videoPort": 5113,
+            "audioPort": 5114,
+            "camIP": "192.168.1.12",
+            "camPort": 8800,
+            "camId": "00000001",
+            "camProtocol": "v380",
+            "camUserName": "admin",
+            "camUserPassword": "admin",
+            "camHD": false,
+            "camEnabled": false
+        },
+        "cameraXM_1": {
+            "applicationIP": "192.168.1.2",
+            "videoPort": 8885,
+            "audioPort": 8858,
+            "camIP": "192.168.1.14",
+            "camPort": 34567,
+            "camId": "",
+            "camProtocol": "xm",
+            "camUserName": "admin",
+            "camUserPassword": "admin",
+            "camHD": true,
+            "camEnabled": true
+        }
+    },
+    "ffmpegSettings": {
+        "VRecorder": {
+            "applicationIP": "192.168.1.2",
+            "videoPort": 5111,
+            "audioPort": 5112,
+            "ffmpegOutputSuffix": "v1",
+            "ffmpegEnabled": true,
+            "ffmpegOutputFolder": ".",
+            "ffmpegOutputFileFormat": "%03d.mkv",
+            "ffmpegCommand": "ffmpeg -loglevel quiet -stats -fflags +genpts -avoid_negative_ts 1 -f h264 -i tcp://{applicationIP}:{videoPort} -preset ultrafast -r 60 -filter:v 'setpts=PTS/50' -c:v hevc -f segment -segment_time 60 -reset_timestamps 1 -fflags nobuffer -flush_packets 1 {output_file}"
+        },
+        "AVRecorder": {
+            "applicationIP": "192.168.1.2",
+            "videoPort": 5113,
+            "audioPort": 5114,
+            "ffmpegOutputSuffix": "f1",
+            "ffmpegEnabled": false,
+            "ffmpegOutputFolder": ".",
+            "ffmpegOutputFileFormat": "%03d.mkv",
+            "ffmpegCommand": "ffmpeg -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -f h264 -i tcp://{applicationIP}:{videoPort} -fflags +genpts -f s16le -acodec adpcm_ima_oki -ar 8000 -i tcp://{applicationIP}:{audioPort} -c:v hevc -preset ultrafast -crf 35  -c:a libmp3lame -f segment -segment_time 60 -reset_timestamps 1 {output_file}"
+        },
+        "ARecorder": {
+            "applicationtIP": "192.168.1.2",
+            "videoPort": 5113,
+            "audioPort": 5114,
+            "ffmpegOutputSuffix": "a1",
+            "ffmpegEnabled": false,
+            "ffmpegOutputFolder": ".",
+            "ffmpegOutputFileFormat": "%03d.mp3",
+            "ffmpegCommand": "ffmpeg -loglevel quiet -stats -use_wallclock_as_timestamps 1 -fflags +genpts -f s16le -acodec adpcm_ima_oki -ar 8000 -i tcp://{applicationIP}:{audioPort} -c:a libmp3lame -f segment -segment_time 60 -reset_timestamps 1 {output_file}"
+        },
+        "VPlayerV380": {
+            "applicationIP": "192.168.1.2",
+            "videoPort": 5113,
+            "audioPort": 5114,
+            "ffmpegOutputSuffix": "",
+            "ffmpegEnabled": false,
+            "ffmpegOutputFolder": ".",
+            "ffmpegOutputFileFormat": "",
+            "ffmpegCommand": "ffplay -x 640 -y 720 -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -i tcp://{applicationIP}:{videoPort}"
+        },
+        "VPlayerV3802": {
+            "applicationIP": "192.168.1.2",
+            "videoPort": 5111,
+            "audioPort": 5112,
+            "ffmpegOutputSuffix": "",
+            "ffmpegEnabled": true,
+            "ffmpegOutputFolder": ".",
+            "ffmpegOutputFileFormat": "",
+            "ffmpegCommand": "ffplay -x 640 -y 360 -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -i tcp://{applicationIP}:{videoPort}"
+        },
+        "VPlayerXM": {
+            "applicationIP": "192.168.1.2",
+            "videoPort": 8885,
+            "audioPort": 8858,
+            "ffmpegOutputSuffix": "",
+            "ffmpegEnabled": true,
+            "ffmpegOutputFolder": ".",
+            "ffmpegOutputFileFormat": "",
+            "ffmpegCommand": "ffplay -x 640 -y 360 -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -i tcp://{applicationIP}:{videoPort}"
+        },
+        "Multi": {
+            "localhostIP": "192.168.1.2",
+            "localVideoPort": 0,
+            "localAudioPort": 0,
+            "ffmpegOutputSuffix": "all",
+            "ffmpegEnabled": false,
+            "ffmpegOutputFolder": ".",
+            "ffmpegOutputFileFormat": "%03d.mkv",
+            "ffmpegCommand": "ffmpeg -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -f h264 -i tcp://192.168.1.2:5115 -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -f hevc -i tcp://192.168.1.2:8885 -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -f hevc -i tcp://192.168.1.2:5113 -filter_complex 'nullsrc=size=1280x720 [base]; [0:v]fps = 10, setpts=PTS-STARTPTS[v0]; [1:v] fps =7.5, setpts=PTS-STARTPTS[v1]; [2:v] fps =20, setpts=PTS-STARTPTS, scale=640x720 [v2]; [base][v0] overlay=shortest=1:x=0:y=0 [tmp1]; [tmp1][v1] overlay=shortest=1:x=0:y=360 [tmp2]; [tmp2][v2] overlay=shortest=1:x=640:y=0 [final]; [final] setpts=PTS/1' -c:v hevc -preset ultrafast -crf 28 -r 60 -f segment -segment_time 60 -reset_timestamps 1 {output_file}"
+        },
+        "AVStreamerUDPDayMode": {
+            "applicationIP": "192.168.1.2",
+            "videoPort": 5111,
+            "audioPort": 5112,
+            "ffmpegOutputSuffix": "sd1udp",
+            "ffmpegEnabled": false,
+            "ffmpegOutputFolder": "",
+            "ffmpegOutputFileFormat": "",
+            "ffmpegCommand": "ffmpeg -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -f h264 -i tcp://{applicationIP}:{videoPort} -c:v hevc -crf 28 -preset ultrafast -filter:v 'setpts=PTS/1' -f mpegts udp://192.168.11.255:8899"
+        }
+    }
+}
