@@ -119,7 +119,7 @@
             "ffmpegEnabled": false,
             "ffmpegOutputFolder": "",
             "ffmpegOutputFileFormat": "",
-            "ffmpegCommand": "ffmpeg -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -f h264 -i tcp://{applicationIP}:{videoPort} -c:v hevc -crf 28 -preset ultrafast -filter:v 'setpts=PTS/1' -f mpegts udp://192.168.11.255:8899"
+            "ffmpegCommand": "ffmpeg -use_wallclock_as_timestamps 1 -fflags +genpts -avoid_negative_ts 1 -f h264 -i tcp://{applicationIP}:{videoPort} -c:v hevc -crf 28 -preset ultrafast -filter:v 'setpts=PTS/1' -f mpegts udp://192.168.1.255:8899"
         }
     }
 }
