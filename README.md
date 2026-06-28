@@ -41,5 +41,15 @@ The `ffmpegSettings` dictionary contains the configuration for one or more FFmpe
 | `ffmpegOutputSuffix` | String appended to the output filename to uniquely identify the generated file. |
 | `ffmpegEnabled`      | Set to `true` to launch FFmpeg with this configuration.                         |
 
+## ❤️ Support the project
+
+If you find this project useful, you can support its development:
+
+- **USDT (TRC20)** TUUZ8joXMZffHJ8nzDjVXNschHVcra5b2n
+- **Ethereum / ERC-20:** 0xC0C5d618A19042440B032e374FfFfAfF5328C9C3
+- **Bitcoin (BTC):** bc1q0ckgp3mpddkl2077s3w0kjgkdlj9eyr9dfq5k7
+
+Thank you for your support!
+
 
 
