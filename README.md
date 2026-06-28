@@ -1,4 +1,4 @@
-# IPC Streams Proxy
+# V380, Xiong Mai IPC Streams Proxy
 V380, XM IP camera video/audio stream extractor/converter
 
 This script enables connections to multiple IP cameras on a local network using the V380 and XM proprietary protocols. It forwards the captured audio and video streams to FFmpeg, allowing them to be streamed, recorded, transcoded, or processed using FFmpeg's extensive capabilities.
@@ -41,15 +41,19 @@ The `ffmpegSettings` dictionary contains the configuration for one or more FFmpe
 | `ffmpegOutputSuffix` | String appended to the output filename to uniquely identify the generated file. |
 | `ffmpegEnabled`      | Set to `true` to launch FFmpeg with this configuration.                         |
 
-## ❤️ Support the project
+## ❤️ Support
 
-If you find this project useful, you can support its development:
+This project is developed in my free time.
+
+If it saves you time or helps your work or if you want to add new ipc support, you can support further development with a donation
+
+### Cryptocurrency
 
 - **USDT (TRC20)** TUUZ8joXMZffHJ8nzDjVXNschHVcra5b2n
 - **Ethereum / ERC-20:** 0xC0C5d618A19042440B032e374FfFfAfF5328C9C3
 - **Bitcoin (BTC):** bc1q0ckgp3mpddkl2077s3w0kjgkdlj9eyr9dfq5k7
 
-Thank you for your support!
+Every contribution helps improve the project. Thank you!
 
 
 
