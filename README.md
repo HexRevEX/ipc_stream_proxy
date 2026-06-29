@@ -1,5 +1,5 @@
 # V380, Xiong Mai IPC Streams Proxy
-V380, XM IP camera video/audio stream extractor/converter
+V380, Xiong Mai IP camera video/audio stream extractor/converter
 
 This script enables connections to multiple IP cameras on a local network using the V380 and XM proprietary protocols. It forwards the captured audio and video streams to FFmpeg, allowing them to be streamed, recorded, transcoded, or processed using FFmpeg's extensive capabilities.
 
